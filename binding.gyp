@@ -1,7 +1,7 @@
 {
   "targets": [
     {
-      "target_name": "tree_sitter_go_template_binding",
+      "target_name": "tree_sitter_plato_binding",
       "include_dirs": [
         "<!(node -e \"require('nan')\")",
         "src"

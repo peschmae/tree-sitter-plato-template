@@ -1,4 +1,4 @@
-package tree_sitter_gotemplate
+package tree_sitter_plato
 
 // #cgo CFLAGS: -std=c11 -fPIC
 // #include "../../src/parser.c"
@@ -9,5 +9,5 @@ import (
 )
 
 func Language() unsafe.Pointer {
-	return unsafe.Pointer(C.tree_sitter_gotmpl())
+	return unsafe.Pointer(C.tree_sitter_plato())
 }

@@ -1,4 +1,4 @@
-module github.com/ngalaiko/tree-sitter-go-template
+module github.com/ngalaiko/tree-sitter-plato
 
 go 1.23
 

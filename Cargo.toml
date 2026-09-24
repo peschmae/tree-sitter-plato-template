@@ -1,13 +1,13 @@
 [package]
-name = "tree-sitter-go-template"
-description = "Go template grammar for the tree-sitter"
+name = "tree-sitter-plato"
+description = "Plato triple-brace Go template grammar for tree-sitter"
 version = "0.19.5"
 authors = [
     "Nikita Galaiko <nikita@galaiko.rocks>",
 ]
-keywords = ["incremental", "parsing", "go-template"]
+keywords = ["incremental", "parsing", "plato"]
 categories = ["parsing", "text-editors"]
-repository = "https://github.com/ngalaiko/tree-sitter-go-template"
+repository = "https://github.com/ngalaiko/tree-sitter-plato"
 edition = "2018"
 license = "MIT"
 
@@ -23,7 +23,7 @@ include = [
 path = "bindings/rust/lib.rs"
 
 [dependencies]
-tree-sitter = "0.19"
+tree-sitter = "0.25"
 
 [build-dependencies]
 cc = "1.0"

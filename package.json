@@ -1,13 +1,12 @@
 {
-    "name": "tree-sitter-go-template",
+    "name": "tree-sitter-plato",
     "version": "0.19.5",
-    "description": "Golang template grammar for tree-sitter",
+    "description": "Plato triple-brace Go template grammar for tree-sitter",
     "main": "bindings/node",
     "keywords": [
         "parser",
         "json",
-        "go-template",
-        "helm"
+        "plato"
     ],
     "author": "Nikita Galaiko",
     "license": "MIT",
@@ -15,13 +14,14 @@
         "nan": "^2.23.0"
     },
     "devDependencies": {
-        "tree-sitter-cli": "^0.25.8",
+        "@tree-sitter-grammars/tree-sitter-yaml": "0.7.1",
+        "tree-sitter-cli": "0.25.8",
+        "tree-sitter-bash": "0.25.1",
         "prettier": "^3.6.2"
     },
     "scripts": {
-        "build": "tree-sitter generate && node-gyp build && npm run build-helm",
-        "build-helm": "cd dialects/helm && tree-sitter generate --no-bindings",
-        "test": "tree-sitter test && cd test && go test -v",
+        "build": "tree-sitter generate && node-gyp build",
+        "test": "tree-sitter test && go test ./... && (cd test && go test)",
         "parse": "tree-sitter parse",
         "highlight": "tree-sitter highlight"
     }

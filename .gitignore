@@ -1,5 +1,8 @@
 Cargo.lock
 node_modules
 build
+dist
+parser
+parser.so
 *.log
 examples

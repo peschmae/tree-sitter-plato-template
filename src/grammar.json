@@ -1,6 +1,6 @@
 {
   "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
-  "name": "gotmpl",
+  "name": "plato",
   "rules": {
     "template": {
       "type": "REPEAT",
@@ -127,7 +127,7 @@
               "type": "IMMEDIATE_TOKEN",
               "content": {
                 "type": "STRING",
-                "value": "}}"
+                "value": "}}}"
               }
             },
             {
@@ -144,7 +144,7 @@
                   "type": "IMMEDIATE_TOKEN",
                   "content": {
                     "type": "STRING",
-                    "value": "-}}"
+                    "value": "-}}}"
                   }
                 }
               ]
@@ -3752,7 +3752,7 @@
           "type": "TOKEN",
           "content": {
             "type": "STRING",
-            "value": "{{"
+            "value": "{{{"
           }
         },
         {
@@ -3764,7 +3764,7 @@
               "members": [
                 {
                   "type": "STRING",
-                  "value": "{{-"
+                  "value": "{{{-"
                 },
                 {
                   "type": "PATTERN",
@@ -3774,7 +3774,7 @@
             }
           },
           "named": false,
-          "value": "{{-"
+          "value": "{{{-"
         }
       ]
     },
@@ -3785,14 +3785,14 @@
           "type": "TOKEN",
           "content": {
             "type": "STRING",
-            "value": "}}"
+            "value": "}}}"
           }
         },
         {
           "type": "TOKEN",
           "content": {
             "type": "STRING",
-            "value": "-}}"
+            "value": "-}}}"
           }
         }
       ]

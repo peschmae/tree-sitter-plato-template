@@ -1,0 +1,93 @@
+====================================
+Nested control actions with trims and Unicode
+====================================
+é: {{{- if .Enabled -}}}
+{{{range .Items}}}{{{.Name}}}{{{else}}}none{{{end}}}
+{{{- else -}}}disabled{{{- end -}}}
+---
+
+(template
+  (text)
+  (if_action
+    (field
+      (identifier))
+    (text)
+    (range_action
+      (field
+        (identifier))
+      (field
+        (identifier))
+      (text))
+    (text)
+    (text)))
+
+====================================
+Bash expansions heredoc and template string
+====================================
+#!/usr/bin/env bash
+echo "${HOME}" '{{{ .Value }}}'
+cat <<EOF
+{{{/* a comment */}}}
+{{{printf "%s" "}}} inside a string"}}}
+EOF
+---
+
+(template
+  (text)
+  (text)
+  (text)
+  (field
+    (identifier))
+  (text)
+  (comment)
+  (text)
+  (function_call
+    (identifier)
+    (argument_list
+      (interpreted_string_literal)
+      (interpreted_string_literal)))
+  (text))
+
+====================================
+YAML block scalar with literal double brace
+====================================
+note: |
+  Literal {{ text
+  {{{ .Message }}}
+---
+
+(template
+  (text)
+  (text)
+  (text)
+  (text)
+  (field
+    (identifier)))
+
+====================================
+Incomplete action while editing
+====================================
+before {{{ if .Ready
+---
+
+(template
+  (text)
+  (ERROR
+    (field
+      (identifier))))
+
+====================================
+Trim delimiters inside quoted arguments and comments
+====================================
+answer: {{{- printf "%s" "}}} inside quote" -}}}
+{{{- /* {{{ and }}} are part of the comment */ -}}}
+---
+(template
+  (text)
+  (function_call
+    (identifier)
+    (argument_list
+      (interpreted_string_literal)
+      (interpreted_string_literal)))
+  (text)
+  (comment))

@@ -1,7 +1,7 @@
 ====================================
 A string constant.
 ====================================
-{{"\"output\""}}
+{{{"\"output\""}}}
 ---
 (template
   (interpreted_string_literal
@@ -11,8 +11,8 @@ A string constant.
 ====================================
 A invalid string constant.
 ====================================
-{{"output
-"}}
+{{{"output
+"}}}
 ---
 (template
   (ERROR
@@ -21,14 +21,14 @@ A invalid string constant.
 ====================================
 A raw string constant.
 ====================================
-{{`"output"`}}
+{{{`"output"`}}}
 ---
 (template (raw_string_literal))
 
 ====================================
 A function call.
 ====================================
-{{printf "%q" "output"}}
+{{{printf "%q" "output"}}}
 ---
 (template
     (function_call
@@ -40,7 +40,7 @@ A function call.
 ====================================
 A function call whose final argument comes from the previous command.
 ====================================
-{{"output" | printf "%q"}}
+{{{"output" | printf "%q"}}}
 ---
 (template
     (chained_pipeline
@@ -53,7 +53,7 @@ A function call whose final argument comes from the previous command.
 ====================================
 A parenthesized argument.
 ====================================
-{{printf "%q" (print "out" "put")}}
+{{{printf "%q" (print "out" "put")}}}
 ---
 (template
     (function_call
@@ -70,7 +70,7 @@ A parenthesized argument.
 ====================================
 A more elaborate call.
 ====================================
-{{"put" | printf "%s%s" "out" | printf "%q"}}
+{{{"put" | printf "%s%s" "out" | printf "%q"}}}
 ---
 (template
     (chained_pipeline
@@ -89,7 +89,7 @@ A more elaborate call.
 ====================================
 A longer chain.
 ====================================
-{{"output" | printf "%s" | printf "%q"}}
+{{{"output" | printf "%s" | printf "%q"}}}
 ---
 (template
     (chained_pipeline
@@ -107,7 +107,7 @@ A longer chain.
 ====================================
 A with action using dot.
 ====================================
-{{with "output"}}{{printf "%q" .}}{{end}}
+{{{with "output"}}}{{{printf "%q" .}}}{{{end}}}
 ---
 (template
     (with_action
@@ -121,7 +121,7 @@ A with action using dot.
 ====================================
 A with action using dot.
 ====================================
-{{with "output"}}{{printf "%q" .}}{{end}}
+{{{with "output"}}}{{{printf "%q" .}}}{{{end}}}
 ---
 (template
     (with_action
@@ -135,7 +135,7 @@ A with action using dot.
 ====================================
 A with action that creates and uses a variable.
 ====================================
-{{with $x := "output" | printf "%q"}}{{$x}}{{end}}
+{{{with $x := "output" | printf "%q"}}}{{{$x}}}{{{end}}}
 ---
 (template
     (with_action
@@ -152,7 +152,7 @@ A with action that creates and uses a variable.
 ====================================
 A with action that uses the variable in another action.
 ====================================
-{{with $x := "output"}}{{printf "%q" $x}}{{end}}
+{{{with $x := "output"}}}{{{printf "%q" $x}}}{{{end}}}
 ---
 (template
     (with_action
@@ -168,7 +168,7 @@ A with action that uses the variable in another action.
 ====================================
 The same, but pipelined.
 ====================================
-{{with $x := "output"}}{{$x | printf "%q"}}{{end}}
+{{{with $x := "output"}}}{{{$x | printf "%q"}}}{{{end}}}
 ---
 (template
     (with_action

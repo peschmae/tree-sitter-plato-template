@@ -1,7 +1,7 @@
 ====================================
 Function without arguments
 ====================================
-{{ functionName }}
+{{{ functionName }}}
 ---
 (template
     (function_call
@@ -10,7 +10,7 @@ Function without arguments
 ====================================
 Function with argument
 ====================================
-{{ functionName $ }}
+{{{ functionName $ }}}
 ---
 (template
     (function_call
@@ -21,7 +21,7 @@ Function with argument
 ====================================
 Function with arguments
 ====================================
-{{ functionName $ . .Field.Field2 1 }}
+{{{ functionName $ . .Field.Field2 1 }}}
 ---
 (template
     (function_call
@@ -38,10 +38,10 @@ Function with arguments
 ====================================
 Function with arguments and newline
 ====================================
-{{ functionName
+{{{ functionName
 "arg1"
 "arg2"
-}}
+}}}
 ---
 (template
     (function_call
@@ -53,7 +53,7 @@ Function with arguments and newline
 ====================================
 Function with arguments and tab
 ====================================
-{{ functionName    $ . .Field.Field2 1 }}
+{{{ functionName    $ . .Field.Field2 1 }}}
 ---
 (template
     (function_call
@@ -70,7 +70,7 @@ Function with arguments and tab
 ====================================
 Method without arguments
 ====================================
-{{ .Method }}
+{{{ .Method }}}
 ---
 (template
     (field (identifier)))
@@ -78,7 +78,7 @@ Method without arguments
 ====================================
 Method with argument
 ====================================
-{{ .Method $ }}
+{{{ .Method $ }}}
 ---
 (template
     (method_call
@@ -90,7 +90,7 @@ Method with argument
 ====================================
 Method with arguments
 ====================================
-{{ .Method $ . .Field.Field2 1 }}
+{{{ .Method $ . .Field.Field2 1 }}}
 ---
 (template
     (method_call
@@ -107,7 +107,7 @@ Method with arguments
 ====================================
 Method on a field without arguments
 ====================================
-{{ .Field.Method }}
+{{{ .Field.Method }}}
 ---
 (template
     (selector_expression
@@ -118,7 +118,7 @@ Method on a field without arguments
 ====================================
 Method on a field with arguments
 ====================================
-{{ .Field.Method $ . .Field.Field2 1 }}
+{{{ .Field.Method $ . .Field.Field2 1 }}}
 ---
 (template
     (method_call
@@ -138,7 +138,7 @@ Method on a field with arguments
 ====================================
 Selector expression on a parenthesized pipeline
 ====================================
-{{ (pipeline).Field }}
+{{{ (pipeline).Field }}}
 ---
 (template
   (selector_expression
@@ -150,7 +150,7 @@ Selector expression on a parenthesized pipeline
 ====================================
 Selector expression on a function call
 ====================================
-{{ pipeline.Field }}
+{{{ pipeline.Field }}}
 ---
 (template
     (selector_expression

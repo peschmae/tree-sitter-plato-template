@@ -35,14 +35,14 @@ func TestCorpus(t *testing.T) {
 func testTemplate(t *testing.T, input string, isError bool) {
 	t.Helper()
 
-	input = fmt.Sprintf("{{ $var := 1}} \n %s", input) // prevent variable not found errors
+	input = fmt.Sprintf("{{{ $var := 1}}} \n %s", input) // prevent variable not found errors
 	_, err := template.New("template").Funcs(
 		template.FuncMap{
 			"pipeline":     func() string { return "" },
 			"functionName": func() string { return "" },
 			"condition":    func() string { return "" },
 		},
-	).Parse(input)
+	).Delims("{{{", "}}}").Parse(input)
 
 	if err != nil && !isError {
 		t.Fatal(err)

@@ -1,4 +1,4 @@
-//! This crate provides go_template language support for the [tree-sitter][] parsing library.
+//! This crate provides Plato language support for the [tree-sitter][] parsing library.
 //!
 //! Typically, you will use the [language][language func] function to add this language to a
 //! tree-sitter [Parser][], and then use the parser to parse some code:
@@ -6,7 +6,7 @@
 //! ```
 //! let code = "";
 //! let mut parser = tree_sitter::Parser::new();
-//! parser.set_language(tree_sitter_go_template::language()).expect("Error loading go-template grammar");
+//! parser.set_language(&tree_sitter_plato::language()).expect("Error loading Plato grammar");
 //! let tree = parser.parse(code, None).unwrap();
 //! ```
 //!
@@ -18,14 +18,14 @@
 use tree_sitter::Language;
 
 extern "C" {
-    fn tree_sitter_go_template() -> Language;
+    fn tree_sitter_plato() -> Language;
 }
 
 /// Get the tree-sitter [Language][] for this grammar.
 ///
 /// [Language]: https://docs.rs/tree-sitter/*/tree_sitter/struct.Language.html
 pub fn language() -> Language {
-    unsafe { tree_sitter_go_template() }
+    unsafe { tree_sitter_plato() }
 }
 
 /// The content of the [`node-types.json`][] file for this grammar.
@@ -46,7 +46,7 @@ mod tests {
     fn test_can_load_grammar() {
         let mut parser = tree_sitter::Parser::new();
         parser
-            .set_language(super::language())
-            .expect("Error loading go_template language");
+            .set_language(&super::language())
+            .expect("Error loading plato language");
     }
 }

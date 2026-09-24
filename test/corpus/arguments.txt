@@ -1,7 +1,7 @@
 ====================================
 Nil
 ====================================
-{{ nil }}
+{{{ nil }}}
 ---
 (template
     (nil))
@@ -9,7 +9,7 @@ Nil
 ====================================
 Dot field
 ====================================
-{{ . }}
+{{{ . }}}
 ---
 (template
     (dot))
@@ -17,7 +17,7 @@ Dot field
 ====================================
 Field
 ====================================
-{{ .Field }}
+{{{ .Field }}}
 ---
 (template
     (field
@@ -26,7 +26,7 @@ Field
 ====================================
 Chained fields
 ====================================
-{{ .Field.Field2 }}
+{{{ .Field.Field2 }}}
 ---
 (template
     (selector_expression
@@ -37,7 +37,7 @@ Chained fields
 ====================================
 Variable without name
 ====================================
-{{ $ }}
+{{{ $ }}}
 ---
 (template
     (variable))
@@ -45,7 +45,7 @@ Variable without name
 ====================================
 Unnamed variable with field
 ====================================
-{{ $.Field }}
+{{{ $.Field }}}
 ---
 (template
     (selector_expression
@@ -55,7 +55,7 @@ Unnamed variable with field
 ====================================
 Unnamed variable with chained field
 ====================================
-{{ $.Field.Field2 }}
+{{{ $.Field.Field2 }}}
 ---
 (template
     (selector_expression
@@ -67,7 +67,7 @@ Unnamed variable with chained field
 ====================================
 Named variable
 ====================================
-{{ $var }}
+{{{ $var }}}
 ---
 (template
     (variable
@@ -76,7 +76,7 @@ Named variable
 ====================================
 Named variable with field
 ====================================
-{{ $var.Field }}
+{{{ $var.Field }}}
 ---
 (template
     (selector_expression
@@ -87,7 +87,7 @@ Named variable with field
 ====================================
 Named variable with chained field
 ====================================
-{{ $var.Field.Field2 }}
+{{{ $var.Field.Field2 }}}
 ---
 (template
     (selector_expression
@@ -100,7 +100,7 @@ Named variable with chained field
 ====================================
 Two fields seperated by whitespace / method call with field as argument
 ====================================
-{{ .Field .Field }}
+{{{ .Field .Field }}}
 ---
 (template
   (method_call

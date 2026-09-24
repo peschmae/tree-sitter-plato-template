@@ -101,7 +101,7 @@ module.exports = function make_grammar(dialect) {
 
             text: (_) =>
                 choice(
-                    // forbid '{{', the rest is valid
+                    // A single brace must remain available before a triple-brace action.
                     /[^{]+/,
                     /\{/
                 ),
@@ -131,8 +131,8 @@ module.exports = function make_grammar(dialect) {
                     $._left_delimiter,
                     $.comment,
                     choice(
-                        token.immediate('}}'),
-                        seq(token.immediate(/\s/), token.immediate('-}}'))
+                        token.immediate('}}}'),
+                        seq(token.immediate(/\s/), token.immediate('-}}}'))
                     )
                 ),
 
@@ -505,8 +505,8 @@ module.exports = function make_grammar(dialect) {
                 token.immediate(seq('/*', /[^*]*\*+([^/*][^*]*\*+)*/, '/')),
 
             _left_delimiter: (_) =>
-                choice(token('{{'), alias(token(seq('{{-', /\s/)), '{{-')),
-            _right_delimiter: (_) => choice(token('}}'), token('-}}')),
+                choice(token('{{{'), alias(token(seq('{{{-', /\s/)), '{{{-')),
+            _right_delimiter: (_) => choice(token('}}}'), token('-}}}')),
         },
     })
 }

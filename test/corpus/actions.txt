@@ -1,16 +1,16 @@
 ============================================
 comment
 ============================================
-{{/* comment */}}
-{{- /* comment */ -}}
-{{/* comment */ -}}
-{{- /* comment */}}
-{{/* multi
+{{{/* comment */}}}
+{{{- /* comment */ -}}}
+{{{/* comment */ -}}}
+{{{- /* comment */}}}
+{{{/* multi
 line
-comment */}}
-{{- /* multi
+comment */}}}
+{{{- /* multi
 line
-comment */ -}}
+comment */ -}}}
 ---
 
 (template
@@ -30,7 +30,7 @@ comment */ -}}
 invalid comment - space after opening delimiter
 ============================================
 
-{{ /* invalid comment */}}
+{{{ /* invalid comment */}}}
 ---
 
 (template
@@ -49,7 +49,7 @@ invalid comment - space after opening delimiter
 invalid comment - space before closing delimiter
 ============================================
 
-{{/* invalid comment */ }}
+{{{/* invalid comment */ }}}
 ---
 
 (template
@@ -58,10 +58,10 @@ invalid comment - space before closing delimiter
   (ERROR))
 
 ============================================
-invalid comment - no space after {{-
+invalid comment - no space after {{{-
 ============================================
 
-{{-/* invalid comment */ -}}
+{{{-/* invalid comment */ -}}}
 ---
 
 (template
@@ -71,10 +71,10 @@ invalid comment - no space after {{-
   (comment))
 
 ============================================
-invalid comment - no space before -}}
+invalid comment - no space before -}}}
 ============================================
 
-{{- /* invalid comment */-}}
+{{{- /* invalid comment */-}}}
 ---
 
 (template
@@ -84,46 +84,25 @@ invalid comment - no space before -}}
     (yaml_no_injection_text)))
 
 ============================================
-invalid comment - newline and space after {{-
+invalid comment - newline and space before -}}}
 ============================================
 
-{{-
- /* invalid comment */ -}}
----
-
-(template
-  (text)
-  (ERROR
-    (ERROR
-      (UNEXPECTED '/'))
-    (function_call
-      (identifier)
-      (argument_list
-        (function_call
-          (identifier))))
-    (UNEXPECTED '*'))
-  (text))
-
-============================================
-invalid comment - newline and space before -}}
-============================================
-
-{{- /* invalid comment */
- -}}
+{{{- /* invalid comment */
+ -}}}
 ---
 
 (template
   (text)
   (comment)
-  (MISSING "-}}")
+  (MISSING "-}}}")
   (text))
 
 ============================================
-valid comment - exactly one newline after {{-
+valid comment - exactly one newline after {{{-
 ============================================
 
-{{-
-/* valid comment */ -}}
+{{{-
+/* valid comment */ -}}}
 ---
 
 (template
@@ -131,11 +110,11 @@ valid comment - exactly one newline after {{-
   (comment))
 
 ============================================
-valid comment - exactly one newline before -}}
+valid comment - exactly one newline before -}}}
 ============================================
 
-{{- /* valid comment */
--}}
+{{{- /* valid comment */
+-}}}
 ---
 
 (template
@@ -145,287 +124,337 @@ valid comment - exactly one newline before -}}
 ============================================
 pipeline
 ============================================
-{{ pipeline }}
+{{{ pipeline }}}
 ---
 
 (template
-    (function_call (identifier)))
+  (function_call
+    (identifier)))
 
 ============================================
 pipeline with leading whitespace trimming
 ============================================
-{{- pipeline }}
+{{{- pipeline }}}
 ---
 
 (template
-    (function_call (identifier)))
+  (function_call
+    (identifier)))
 
 =============================================
 if
 =============================================
-{{if pipeline}} t1 {{end}}
+{{{if pipeline}}} t1 {{{end}}}
 ---
+
 (template
-    (if_action
-        (function_call (identifier))
-        (text)))
+  (if_action
+    (function_call
+      (identifier))
+    (text)))
 
 =============================================
 if with leading whitespace trimming
 =============================================
-{{- if pipeline }} t1 {{end}}
+{{{- if pipeline }}} t1 {{{end}}}
 ---
+
 (template
-    (if_action
-        (function_call (identifier))
-        (text)))
+  (if_action
+    (function_call
+      (identifier))
+    (text)))
 
 =============================================
 if with leading whitespace trimming and newline
 =============================================
-{{-
-if pipeline }} t1 {{end}}
+{{{-
+if pipeline }}} t1 {{{end}}}
 ---
+
 (template
-    (if_action
-        (function_call (identifier))
-        (text)))
+  (if_action
+    (function_call
+      (identifier))
+    (text)))
 
 =============================================
 if else
 =============================================
-{{if pipeline}} t1 {{ else }} t2 {{ end }}
+{{{if pipeline}}} t1 {{{ else }}} t2 {{{ end }}}
 ---
+
 (template
-    (if_action
-        (function_call (identifier))
-        (text)
-        (text)))
+  (if_action
+    (function_call
+      (identifier))
+    (text)
+    (text)))
 
 =============================================
 if else with text and template in if
 =============================================
-{{if pipeline}} t1 {{ pipeline }} {{ else }} t2 {{ end }}
+{{{if pipeline}}} t1 {{{ pipeline }}} {{{ else }}} t2 {{{ end }}}
 ---
+
 (template
-    (if_action
-        (function_call (identifier))
-        (text)
-        (function_call (identifier))
-        (text)
-        (text)))
+  (if_action
+    (function_call
+      (identifier))
+    (text)
+    (function_call
+      (identifier))
+    (text)
+    (text)))
 
 =============================================
 if-else
 =============================================
-{{if pipeline}} t1 {{ else if pipeline }} t2 {{ end }}
+{{{if pipeline}}} t1 {{{ else if pipeline }}} t2 {{{ end }}}
 ---
+
 (template
-    (if_action
-        (function_call (identifier))
-        (text)
-        (function_call (identifier))
-        (text)))
+  (if_action
+    (function_call
+      (identifier))
+    (text)
+    (function_call
+      (identifier))
+    (text)))
 
 =============================================
 if-else with text and template in if
 =============================================
-{{if pipeline}} t1 {{ pipeline }} {{ else if pipeline }} t2 {{ end }}
+{{{if pipeline}}} t1 {{{ pipeline }}} {{{ else if pipeline }}} t2 {{{ end }}}
 ---
+
 (template
-    (if_action
-        (function_call (identifier))
-        (text)
-        (function_call (identifier))
-        (text)
-        (function_call (identifier))
-        (text)))
+  (if_action
+    (function_call
+      (identifier))
+    (text)
+    (function_call
+      (identifier))
+    (text)
+    (function_call
+      (identifier))
+    (text)))
 
 =============================================
 if-else else
 =============================================
-{{if pipeline}} t1 {{ else if pipeline }} t2 {{ else }} t3 {{ end }}
+{{{if pipeline}}} t1 {{{ else if pipeline }}} t2 {{{ else }}} t3 {{{ end }}}
 ---
+
 (template
-    (if_action
-        (function_call (identifier))
-        (text)
-        (function_call (identifier))
-        (text)
-        (text)))
+  (if_action
+    (function_call
+      (identifier))
+    (text)
+    (function_call
+      (identifier))
+    (text)
+    (text)))
 
 =============================================
 if-else else with template and text in else
 =============================================
-{{if pipeline}} t1 {{ else if pipeline }} t2 {{ else }} {{ .Values.test }} test {{ end }}
+{{{if pipeline}}} t1 {{{ else if pipeline }}} t2 {{{ else }}} {{{ .Values.test }}} test {{{ end }}}
 ---
+
 (template
-    (if_action
-        (function_call (identifier))
-        (text)
-        (function_call (identifier))
-        (text)
-        (text)
-        (selector_expression
-          (field
-            (identifier))
-          (field_identifier))
-        (text)))
+  (if_action
+    (function_call
+      (identifier))
+    (text)
+    (function_call
+      (identifier))
+    (text)
+    (text)
+    (selector_expression
+      (field
+        (identifier))
+      (field_identifier))
+    (text)))
 
 =============================================
 if-else else with text and template in else
 =============================================
-{{if pipeline}} t1 {{ else if pipeline }} t2 {{ else }} test {{ .Values.test }} {{ end }}
+{{{if pipeline}}} t1 {{{ else if pipeline }}} t2 {{{ else }}} test {{{ .Values.test }}} {{{ end }}}
 ---
+
 (template
-    (if_action
-        (function_call (identifier))
-        (text)
-        (function_call (identifier))
-        (text)
-        (text)
-        (selector_expression
-          (field
-            (identifier))
-          (field_identifier))
-          (text)))
+  (if_action
+    (function_call
+      (identifier))
+    (text)
+    (function_call
+      (identifier))
+    (text)
+    (text)
+    (selector_expression
+      (field
+        (identifier))
+      (field_identifier))
+    (text)))
 
 =============================================
 if-else else with text and template in if-else
 =============================================
-{{if pipeline}} t1 {{ else if pipeline }} test {{ .Values.test }} {{ else }} t3 {{ end }}
+{{{if pipeline}}} t1 {{{ else if pipeline }}} test {{{ .Values.test }}} {{{ else }}} t3 {{{ end }}}
 ---
+
 (template
-    (if_action
-        (function_call (identifier))
-        (text)
-        (function_call (identifier))
-        (text)
-        (selector_expression
-          (field
-            (identifier))
-          (field_identifier))
-        (text)
-        (text)))
+  (if_action
+    (function_call
+      (identifier))
+    (text)
+    (function_call
+      (identifier))
+    (text)
+    (selector_expression
+      (field
+        (identifier))
+      (field_identifier))
+    (text)
+    (text)))
 
 =============================================
 if-else else with text and template in else and text and template in if-else
 =============================================
-{{if pipeline}} t1 {{ else if pipeline }} test {{ .Values.test }} {{ else }} t3 {{ .Values.test }} {{ end }}
+{{{if pipeline}}} t1 {{{ else if pipeline }}} test {{{ .Values.test }}} {{{ else }}} t3 {{{ .Values.test }}} {{{ end }}}
 ---
+
 (template
-    (if_action
-        (function_call (identifier))
-        (text)
-        (function_call (identifier))
-        (text)
-        (selector_expression
-          (field
-            (identifier))
-          (field_identifier))
-        (text)
-        (text)
-        (selector_expression
-          (field
-            (identifier))
-          (field_identifier))
-          (text)))
+  (if_action
+    (function_call
+      (identifier))
+    (text)
+    (function_call
+      (identifier))
+    (text)
+    (selector_expression
+      (field
+        (identifier))
+      (field_identifier))
+    (text)
+    (text)
+    (selector_expression
+      (field
+        (identifier))
+      (field_identifier))
+    (text)))
 
 =============================================
 if-else with text and template in if-else
 =============================================
-{{if pipeline}} t1 {{ else if pipeline }} test {{ .Values.test }} {{ end }}
+{{{if pipeline}}} t1 {{{ else if pipeline }}} test {{{ .Values.test }}} {{{ end }}}
 ---
+
 (template
-    (if_action
-        (function_call (identifier))
-        (text)
-        (function_call (identifier))
-        (text)
-        (selector_expression
-          (field
-            (identifier))
-          (field_identifier))
-          (text)))
+  (if_action
+    (function_call
+      (identifier))
+    (text)
+    (function_call
+      (identifier))
+    (text)
+    (selector_expression
+      (field
+        (identifier))
+      (field_identifier))
+    (text)))
 
 =============================================
 range
 =============================================
-{{range pipeline}} t1 {{ end }}
+{{{range pipeline}}} t1 {{{ end }}}
 ---
+
 (template
-    (range_action
-        (function_call (identifier))
-        (text)))
+  (range_action
+    (function_call
+      (identifier))
+    (text)))
 
 =============================================
 range else
 =============================================
-{{range pipeline}} t1 {{ else }} t2 {{ end }}
+{{{range pipeline}}} t1 {{{ else }}} t2 {{{ end }}}
 ---
+
 (template
-    (range_action
-        (function_call (identifier))
-        (text)
-        (text)))
+  (range_action
+    (function_call
+      (identifier))
+    (text)
+    (text)))
 
 =============================================
 range break
 =============================================
-{{range pipeline}} {{break}} {{ end }}
+{{{range pipeline}}} {{{break}}} {{{ end }}}
 ---
+
 (template
-    (range_action
-        (function_call (identifier))
-        (text)
-        (break_action)
-        (text)))
+  (range_action
+    (function_call
+      (identifier))
+    (text)
+    (break_action)
+    (text)))
 
 =============================================
 range continue
 =============================================
-{{range pipeline}} {{continue}} {{ end }}
+{{{range pipeline}}} {{{continue}}} {{{ end }}}
 ---
+
 (template
-    (range_action
-        (function_call (identifier))
-        (text)
-        (continue_action)
-        (text)))
+  (range_action
+    (function_call
+      (identifier))
+    (text)
+    (continue_action)
+    (text)))
 
 =============================================
 template
 =============================================
-{{template "name"}}
+{{{template "name"}}}
 ---
+
 (template
-    (template_action
-        (interpreted_string_literal)))
+  (template_action
+    (interpreted_string_literal)))
 
 =============================================
 template with argument
 =============================================
-{{template "name" pipeline}}
+{{{template "name" pipeline}}}
 ---
+
 (template
-    (template_action
-        (interpreted_string_literal)
-        (function_call (identifier))))
+  (template_action
+    (interpreted_string_literal)
+    (function_call
+      (identifier))))
 
 =============================================
 define
 =============================================
-{{define "name"}} t1 {{ end }}
+{{{define "name"}}} t1 {{{ end }}}
 ---
+
 (template
-    (define_action
-        (interpreted_string_literal)
-        (text)))
+  (define_action
+    (interpreted_string_literal)
+    (text)))
 
 =============================================
 invalid block (missing pipeline)
 =============================================
-{{block "name"}} T1 {{end}}
+{{{block "name"}}} T1 {{{end}}}
 ---
 
 (template
@@ -438,7 +467,7 @@ invalid block (missing pipeline)
 =============================================
 block with argument
 =============================================
-{{block "name" pipeline }} T1 {{end}}
+{{{block "name" pipeline }}} T1 {{{end}}}
 ---
 
 (template
@@ -451,7 +480,7 @@ block with argument
 =============================================
 with
 =============================================
-{{with pipeline}} T1 {{end}}
+{{{with pipeline}}} T1 {{{end}}}
 ---
 
 (template
@@ -463,7 +492,7 @@ with
 =============================================
 with else
 =============================================
-{{with pipeline}} T1 {{else}} T0 {{end}}
+{{{with pipeline}}} T1 {{{else}}} T0 {{{end}}}
 ---
 
 (template
@@ -476,7 +505,7 @@ with else
 =============================================
 with else with
 =============================================
-{{with pipeline}} T2 {{else with pipeline}} T1 {{else}} T0 {{end}}
+{{{with pipeline}}} T2 {{{else with pipeline}}} T1 {{{else}}} T0 {{{end}}}
 ---
 
 (template
@@ -492,120 +521,142 @@ with else with
 =============================================
 with else with text and template in with
 =============================================
-{{with pipeline}} t1 {{ pipeline }} {{ else }} t2 {{ end }}
+{{{with pipeline}}} t1 {{{ pipeline }}} {{{ else }}} t2 {{{ end }}}
 ---
+
 (template
-    (with_action
-        (function_call (identifier))
-        (text)
-        (function_call (identifier))
-        (text)
-        (text)))
+  (with_action
+    (function_call
+      (identifier))
+    (text)
+    (function_call
+      (identifier))
+    (text)
+    (text)))
 
 =============================================
 with-else with text and template in with
 =============================================
-{{with pipeline}} t1 {{ pipeline }} {{ else with pipeline }} t2 {{ end }}
+{{{with pipeline}}} t1 {{{ pipeline }}} {{{ else with pipeline }}} t2 {{{ end }}}
 ---
+
 (template
-    (with_action
-        (function_call (identifier))
-        (text)
-        (function_call (identifier))
-        (text)
-        (function_call (identifier))
-        (text)))
+  (with_action
+    (function_call
+      (identifier))
+    (text)
+    (function_call
+      (identifier))
+    (text)
+    (function_call
+      (identifier))
+    (text)))
 
 =============================================
 with-else else with template and text in else
 =============================================
-{{with pipeline}} t1 {{ else with pipeline }} t2 {{ else }} {{ .Values.test }} test {{ end }}
+{{{with pipeline}}} t1 {{{ else with pipeline }}} t2 {{{ else }}} {{{ .Values.test }}} test {{{ end }}}
 ---
+
 (template
-    (with_action
-        (function_call (identifier))
-        (text)
-        (function_call (identifier))
-        (text)
-        (text)
-        (selector_expression
-          (field
-            (identifier))
-          (field_identifier))
-        (text)))
+  (with_action
+    (function_call
+      (identifier))
+    (text)
+    (function_call
+      (identifier))
+    (text)
+    (text)
+    (selector_expression
+      (field
+        (identifier))
+      (field_identifier))
+    (text)))
 
 =============================================
 with-else else with text and template in else
 =============================================
-{{with pipeline}} t1 {{ else with pipeline }} t2 {{ else }} test {{ .Values.test }} {{ end }}
+{{{with pipeline}}} t1 {{{ else with pipeline }}} t2 {{{ else }}} test {{{ .Values.test }}} {{{ end }}}
 ---
+
 (template
-    (with_action
-        (function_call (identifier))
-        (text)
-        (function_call (identifier))
-        (text)
-        (text)
-        (selector_expression
-          (field
-            (identifier))
-          (field_identifier))
-          (text)))
+  (with_action
+    (function_call
+      (identifier))
+    (text)
+    (function_call
+      (identifier))
+    (text)
+    (text)
+    (selector_expression
+      (field
+        (identifier))
+      (field_identifier))
+    (text)))
 
 =============================================
 with-else else with text and template in with-else
 =============================================
-{{with pipeline}} t1 {{ else with pipeline }} test {{ .Values.test }} {{ else }} t3 {{ end }}
+{{{with pipeline}}} t1 {{{ else with pipeline }}} test {{{ .Values.test }}} {{{ else }}} t3 {{{ end }}}
 ---
+
 (template
-    (with_action
-        (function_call (identifier))
-        (text)
-        (function_call (identifier))
-        (text)
-        (selector_expression
-          (field
-            (identifier))
-          (field_identifier))
-        (text)
-        (text)))
+  (with_action
+    (function_call
+      (identifier))
+    (text)
+    (function_call
+      (identifier))
+    (text)
+    (selector_expression
+      (field
+        (identifier))
+      (field_identifier))
+    (text)
+    (text)))
 
 =============================================
 with-else else with text and template in else and text and template in with-else
 =============================================
-{{with pipeline}} t1 {{ else with pipeline }} test {{ .Values.test }} {{ else }} t3 {{ .Values.test }} {{ end }}
+{{{with pipeline}}} t1 {{{ else with pipeline }}} test {{{ .Values.test }}} {{{ else }}} t3 {{{ .Values.test }}} {{{ end }}}
 ---
+
 (template
-    (with_action
-        (function_call (identifier))
-        (text)
-        (function_call (identifier))
-        (text)
-        (selector_expression
-          (field
-            (identifier))
-          (field_identifier))
-        (text)
-        (text)
-        (selector_expression
-          (field
-            (identifier))
-          (field_identifier))
-          (text)))
+  (with_action
+    (function_call
+      (identifier))
+    (text)
+    (function_call
+      (identifier))
+    (text)
+    (selector_expression
+      (field
+        (identifier))
+      (field_identifier))
+    (text)
+    (text)
+    (selector_expression
+      (field
+        (identifier))
+      (field_identifier))
+    (text)))
 
 =============================================
 with-else with text and template in with-else
 =============================================
-{{with pipeline}} t1 {{ else with pipeline }} test {{ .Values.test }} {{ end }}
+{{{with pipeline}}} t1 {{{ else with pipeline }}} test {{{ .Values.test }}} {{{ end }}}
 ---
+
 (template
-    (with_action
-        (function_call (identifier))
-        (text)
-        (function_call (identifier))
-        (text)
-        (selector_expression
-          (field
-            (identifier))
-          (field_identifier))
-          (text)))
+  (with_action
+    (function_call
+      (identifier))
+    (text)
+    (function_call
+      (identifier))
+    (text)
+    (selector_expression
+      (field
+        (identifier))
+      (field_identifier))
+    (text)))

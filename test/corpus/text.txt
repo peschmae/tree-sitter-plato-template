@@ -1,66 +1,54 @@
 ====================================
-Valid curly brackets combination inside text block
+Literal single and double braces beside actions
 ====================================
-{{ if condition }}
-    }}
-    {}
-    }{
-    }
-    {
-    }}}
-{{ end }}
+{ {{ {{ literal }} {{{ .Name }}} { {{{"{{ and }}"}}} {{
 ---
-(template
-    (if_action
-        (function_call (identifier))
-        (text)
-        (text)
-        (text)
-        (text)
-        (text)
-        (text)
-        (text)))
 
-====================================
-Invalid curly brackets combination inside text block
-====================================
-{{ if condition }}
-    {{
-{{ end }}
----
-(template
-    (if_action
-        (function_call (identifier))
-        (text)
-        (ERROR)))
-
-====================================
-No injection text
-====================================
-foo:
-  bar: {{ .Values.foo.bar }}-{{ .Values.foo.bar }}
----
 (template
   (text)
-  (selector_expression
-    (selector_expression
-      (field
-        (identifier))
-      (field_identifier))
-    (field_identifier))
-  (yaml_no_injection_text)
-  (selector_expression
-    (selector_expression
-      (field
-        (identifier))
-      (field_identifier))
-    (field_identifier)))
+  (text)
+  (text)
+  (text)
+  (text)
+  (text)
+  (text)
+  (text)
+  (field
+    (identifier))
+  (text)
+  (text)
+  (text)
+  (interpreted_string_literal)
+  (text)
+  (text)
+  (text))
 
 ====================================
-Normal text
+YAML separator between actions
 ====================================
-this:
-  - is a yaml-list
+foo: {{{ .Name }}}-{{{ .Other }}}
 ---
+
 (template
+  (text)
+  (field
+    (identifier))
+  (yaml_no_injection_text)
+  (field
+    (identifier)))
+
+====================================
+Plain non-template YAML and Bash
+====================================
+key: value
+#!/bin/bash
+echo "${HOME}" '{{'
+---
+
+(template
+  (text)
+  (text)
+  (text)
+  (text)
+  (text)
   (text))
